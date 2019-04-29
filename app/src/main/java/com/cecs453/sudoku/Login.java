@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonRegister;
@@ -45,6 +46,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         finishAffinity();
     }
 
+    @Override
+    protected void onStart() {
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(this, MainMenu.class));
+        }
+        super.onStart();
+    }
+
     private void loginUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString();
@@ -64,7 +74,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(Login.this,MainMenu.class));
                         }
