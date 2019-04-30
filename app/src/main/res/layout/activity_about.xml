@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/popupbg"
-    tools:context=".Help">
+    tools:context=".About">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +20,7 @@
                 android:id="@+id/textViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/helpTitle"
+                android:text="@string/aboutTitle"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
@@ -37,51 +37,12 @@
                 android:id="@+id/textViewHelp1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/help1"
+                android:text="@string/aboutContent"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:textColor='@color/words'/>
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp" />
-            <TextView
-                android:id="@+id/textViewHelp2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/help2"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:textColor='@color/words'/>
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"/>
-            <TextView
-                android:id="@+id/textViewHelp3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/help3"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="15dp"
-                android:textColor='@color/words'/>
-            <TextView
-                android:id="@+id/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txtCredits"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="20dp"
-                android:autoLink="web"
-                android:textColor="#0000EE"/>
+
         </LinearLayout>
     </ScrollView>
-
 </android.support.constraint.ConstraintLayout>

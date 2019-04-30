@@ -58,7 +58,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         } else if (id == R.id.nav_help) {
             startActivity(new Intent(getApplicationContext(),Help.class));
         } else if (id == R.id.nav_about){
-
+            startActivity(new Intent(getApplicationContext(),About.class));
         }
         else if (id == R.id.nav_logout) {
             firebaseAuth.signOut();
