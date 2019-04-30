@@ -56,7 +56,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         } else if (id == R.id.nav_changeProfile) {
 
         } else if (id == R.id.nav_help) {
-
+            startActivity(new Intent(getApplicationContext(),Help.class));
         } else if (id == R.id.nav_about){
 
         }
