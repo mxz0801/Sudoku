@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +46,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         TextView headerEmail = headerView.findViewById(R.id.headerEmail);
         headerDisplayName.setText(currentUser.getDisplayName());
         headerEmail.setText(currentUser.getEmail());
+        newGame();
     }
 
     @Override
@@ -84,7 +86,16 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
     public void newGame(){
-        timer.setBase((SystemClock.elapsedRealtime()));
+        //timer.setBase((SystemClock.elapsedRealtime()));
+        SudokuGenerator sudokuGenerator = new SudokuGenerator();
+        int[][] solution = sudokuGenerator.generateGrid();
+        int[][] sudoku = sudokuGenerator.removeElements(solution);
+        for (int i = 0; i < sudoku.length; i++) {
+            for (int j = 0; j < sudoku[i].length; j++) {
+                System.out.print(sudoku[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
 
