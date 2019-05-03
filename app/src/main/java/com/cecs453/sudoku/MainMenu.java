@@ -40,7 +40,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
-//        TextView headerImageView = headerView.findViewById(R.id.headerimageView);
+        ImageView headerImageView = headerView.findViewById(R.id.headerimageView);
         TextView headerDisplayName = headerView.findViewById(R.id.headerDisplayName);
         TextView headerEmail = headerView.findViewById(R.id.headerEmail);
         headerDisplayName.setText(currentUser.getDisplayName());
@@ -53,8 +53,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-//            this.moveTaskToBack(true);
-            super.onBackPressed();
+            this.moveTaskToBack(true);
+            //super.onBackPressed();
         }
     }
 
