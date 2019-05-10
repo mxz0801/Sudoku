@@ -9,6 +9,7 @@ public class SudokuGenerator {
     public static SudokuGenerator instance;
     private ArrayList<ArrayList<Integer>> Available = new ArrayList<ArrayList<Integer>>();
     private Random rand = new Random();
+    int removeItems = 3;
 
     public int[][] generateGrid(){
         int[][] sudoku = new int[9][9];
@@ -67,7 +68,7 @@ public class SudokuGenerator {
     public int[][] removeElements( int[][] sudoku ){
         int i = 0;
 
-        while( i < 20 ){
+        while( i < removeItems ){
             int x = rand.nextInt(9);
             int y = rand.nextInt(9);
 

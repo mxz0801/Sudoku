@@ -16,13 +16,15 @@ import java.util.ArrayList;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<String> mData;
+    private ArrayList<String> original;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, ArrayList<String> data) {
+    MyRecyclerViewAdapter(Context context, ArrayList<String> data, ArrayList<String> original) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.original = original;
     }
 
     // inflates the cell layout from xml when needed
@@ -42,7 +44,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         else{
             holder.myTextView.setText(mData.get(position));
         }
-
+        if(original.get(position).equals("0")){
+            holder.myTextView.setText(mData.get(position));
+            holder.myTextView.setTextColor(Color.RED);
+        }
+        else{
+            holder.myTextView.setTextColor(Color.BLACK);
+        }
     }
 
 

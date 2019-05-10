@@ -31,6 +31,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private RecyclerView recyclerView;
     private MyRecyclerViewAdapter mAdapter;
     public int[][] sudokuBoard = new int[9][9];
+    int[][] solution;
     public ArrayList<String> data;
     public ArrayList<String> dataOriginal;
     private LinearLayout b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
@@ -84,10 +85,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
         dataOriginal = new ArrayList<>();
-        newGame();
         data = new ArrayList<>();
-        data = dataOriginal;
-        mAdapter = new MyRecyclerViewAdapter(this,data);
+        newGame();
+        mAdapter = new MyRecyclerViewAdapter(this,data,dataOriginal);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
 }
@@ -131,15 +131,19 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public void newGame(){
         //timer.setBase((SystemClock.elapsedRealtime()));
         SudokuGenerator sudokuGenerator = new SudokuGenerator();
-        int[][] solution = sudokuGenerator.generateGrid();
+        solution = sudokuGenerator.generateGrid();
         sudokuBoard = sudokuGenerator.removeElements(solution);
         for (int i = 0; i < sudokuBoard.length; i++) {
             for (int j = 0; j < sudokuBoard[i].length; j++) {
                 System.out.print(sudokuBoard[i][j] + " ");
                 dataOriginal.add(Integer.toString(sudokuBoard[i][j]));
+                data.add(Integer.toString(sudokuBoard[i][j]));
             }
             System.out.println();
         }
+    }
+    public void checkWin(){
+        
     }
 
     @Override
@@ -148,7 +152,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             data.set(position,Integer.toString(holdValue));
             mAdapter.notifyDataSetChanged();
         }
-
+        checkWin();
     }
 
     @Override
