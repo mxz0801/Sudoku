@@ -9,9 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
@@ -57,6 +61,18 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         else{
             holder.myTextView.setTextColor(Color.BLACK);
         }
+        ArrayList<Integer> theList = new ArrayList<>();
+        Collections.addAll(theList,3,12,21,27,36,45,33,42,51,75,66,57);
+
+            if(theList.contains(position) || theList.contains(position-1) || theList.contains(position-2)) {
+                holder.myLinearLayout.setBackgroundColor(Color.LTGRAY);
+            }
+//            for(int j = 0; j < 3; j++) {
+//                if(position == i) {
+//                    holder.myLinearLayout.setBackgroundColor(Color.LTGRAY);
+//                }
+//            }
+
     }
 
 
@@ -69,11 +85,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
-
+        LinearLayout myLinearLayout;
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.info_text);
             itemView.setOnClickListener(this);
+            myLinearLayout = itemView.findViewById(R.id.linear);
         }
 
         @Override
