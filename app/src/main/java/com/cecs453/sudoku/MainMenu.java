@@ -32,6 +32,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private MyRecyclerViewAdapter mAdapter;
     public int[][] sudokuBoard = new int[9][9];
     int[][] solution;
+    public ArrayList<String> solutionArray;
     public ArrayList<String> data;
     public ArrayList<String> dataOriginal;
     private LinearLayout b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
@@ -86,7 +87,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
         dataOriginal = new ArrayList<>();
         data = new ArrayList<>();
+        solutionArray = new ArrayList<>();
         newGame();
+        System.out.println(data);
+        System.out.println(solutionArray);
         mAdapter = new MyRecyclerViewAdapter(this,data,dataOriginal);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
@@ -132,18 +136,24 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         //timer.setBase((SystemClock.elapsedRealtime()));
         SudokuGenerator sudokuGenerator = new SudokuGenerator();
         solution = sudokuGenerator.generateGrid();
+
+        for (int i = 0; i < solution.length; i++) {
+            for (int j = 0; j < solution[i].length; j++) {
+                solutionArray.add(Integer.toString(solution[i][j]));
+            }
+        }
         sudokuBoard = sudokuGenerator.removeElements(solution);
         for (int i = 0; i < sudokuBoard.length; i++) {
             for (int j = 0; j < sudokuBoard[i].length; j++) {
-                System.out.print(sudokuBoard[i][j] + " ");
                 dataOriginal.add(Integer.toString(sudokuBoard[i][j]));
                 data.add(Integer.toString(sudokuBoard[i][j]));
             }
-            System.out.println();
         }
     }
     public void checkWin(){
-        
+        if (data.equals(solutionArray)){
+            System.out.println("Winner");
+        }
     }
 
     @Override
