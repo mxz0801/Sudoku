@@ -64,15 +64,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         ArrayList<Integer> theList = new ArrayList<>();
         Collections.addAll(theList,3,12,21,27,36,45,33,42,51,75,66,57);
 
-            if(theList.contains(position) || theList.contains(position-1) || theList.contains(position-2)) {
-                holder.myLinearLayout.setBackgroundColor(Color.LTGRAY);
-            }
-//            for(int j = 0; j < 3; j++) {
-//                if(position == i) {
-//                    holder.myLinearLayout.setBackgroundColor(Color.LTGRAY);
-//                }
-//            }
-
+        if(theList.contains(position) || theList.contains(position-1) || theList.contains(position-2)) {
+            holder.myLinearLayout.setBackgroundResource(R.drawable.gray_sudoku_cell);
+        } else {
+            holder.myLinearLayout.setBackgroundResource(R.drawable.sudoku_cell);
+        }
     }
 
 
