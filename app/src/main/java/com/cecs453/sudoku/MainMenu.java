@@ -1,6 +1,7 @@
 package com.cecs453.sudoku;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
@@ -30,14 +31,17 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private Chronometer timer;
     private RecyclerView recyclerView;
     private MyRecyclerViewAdapter mAdapter;
-    public int[][] sudokuBoard = new int[9][9];
-    int[][] solution;
-    public ArrayList<String> solutionArray;
-    public ArrayList<String> data;
-    public ArrayList<String> dataOriginal;
+    private int[][] sudokuBoard = new int[9][9];
+    private int[][] solution;
+    private ArrayList<String> solutionArray;
+    private ArrayList<String> data;
+    private ArrayList<String> dataOriginal;
+    private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t0;
     private LinearLayout b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
     private ImageView undo;
-    public int holdValue = 0;
+    private int lastPostition = -1;
+    private int lastValue;
+    private int holdValue = 0;
     @Override
     protected void onStart() {
         super.onStart();
@@ -63,6 +67,16 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         b8 = findViewById(R.id.b8);
         b9 = findViewById(R.id.b9);
         b0 = findViewById(R.id.b0);
+        t1 = findViewById(R.id.t1);
+        t2 = findViewById(R.id.t2);
+        t3 = findViewById(R.id.t3);
+        t4 = findViewById(R.id.t4);
+        t5 = findViewById(R.id.t5);
+        t6 = findViewById(R.id.t6);
+        t7 = findViewById(R.id.t7);
+        t8 = findViewById(R.id.t8);
+        t9 = findViewById(R.id.t9);
+        t0 = findViewById(R.id.t0);
         undo = findViewById(R.id.imageViewUndo);
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
@@ -136,8 +150,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         dataOriginal.clear();
         data.clear();
         solutionArray.clear();
-
-        //timer.setBase((SystemClock.elapsedRealtime()));
+        timer.setBase((SystemClock.elapsedRealtime()));
         SudokuGenerator sudokuGenerator = new SudokuGenerator();
         solution = sudokuGenerator.generateGrid();
 
@@ -163,6 +176,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onItemClick(View view, int position) {
+        lastPostition = position;
+        lastValue = Integer.parseInt(data.get(position));
         if(dataOriginal.get(position).equals("0")){
             data.set(position,Integer.toString(holdValue));
             mAdapter.notifyDataSetChanged();
@@ -172,36 +187,64 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onClick(View v) {
+        t1.setTextColor(Color.BLACK);
+        t2.setTextColor(Color.BLACK);
+        t3.setTextColor(Color.BLACK);
+        t4.setTextColor(Color.BLACK);
+        t5.setTextColor(Color.BLACK);
+        t6.setTextColor(Color.BLACK);
+        t7.setTextColor(Color.BLACK);
+        t8.setTextColor(Color.BLACK);
+        t9.setTextColor(Color.BLACK);
+        t0.setTextColor(Color.BLACK);
+
+
         switch (v.getId()){
             case R.id.b1:
                 holdValue = 1;
+                t1.setTextColor(Color.RED);
                 break;
             case R.id.b2:
                 holdValue = 2;
+                t2.setTextColor(Color.RED);
                 break;
             case R.id.b3:
                 holdValue = 3;
+                t3.setTextColor(Color.RED);
                 break;
             case R.id.b4:
                 holdValue = 4;
+                t4.setTextColor(Color.RED);
                 break;
             case R.id.b5:
                 holdValue = 5;
+                t5.setTextColor(Color.RED);
                 break;
             case R.id.b6:
                 holdValue = 6;
+                t6.setTextColor(Color.RED);
                 break;
             case R.id.b7:
                 holdValue = 7;
+                t7.setTextColor(Color.RED);
                 break;
             case R.id.b8:
                 holdValue = 8;
+                t8.setTextColor(Color.RED);
                 break;
             case R.id.b9:
                 holdValue = 9;
+                t9.setTextColor(Color.RED);
                 break;
             case R.id.b0:
                 holdValue = 0;
+                t0.setTextColor(Color.RED);
+                break;
+            case R.id.imageViewUndo:
+                if(lastPostition!=-1){
+                    data.set(lastPostition,Integer.toString(lastValue));
+                    mAdapter.notifyDataSetChanged();
+                }
                 break;
 
         }

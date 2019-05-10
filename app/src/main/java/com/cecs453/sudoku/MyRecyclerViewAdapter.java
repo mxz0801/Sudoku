@@ -39,13 +39,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mData.get(position).equals("0")){
-            holder.myTextView.setText("?");
+            holder.myTextView.setText(" ");
         }
         else{
             holder.myTextView.setText(mData.get(position));
         }
         if(original.get(position).equals("0")){
-            holder.myTextView.setText(mData.get(position));
+            if(mData.get(position).equals("0")){
+                holder.myTextView.setText(" ");
+
+            }
+            else{
+                holder.myTextView.setText(mData.get(position));
+            }
             holder.myTextView.setTextColor(Color.RED);
         }
         else{
