@@ -41,7 +41,7 @@ public class SudokuGenerator {
     private boolean checkConflict( int[][] sudoku , int currentPosition , final int number) {
         int xPosition =  currentPosition % 9;
         int yPosition = currentPosition / 9;
-        if (checkHorizontal(sudoku,xPosition,yPosition,number)||checkVertical(sudoku,xPosition,yPosition,number)){
+        if (checkHorizontal(sudoku,xPosition,yPosition,number)||checkVertical(sudoku,xPosition,yPosition,number)|| checkRegionConflict(sudoku, xPosition, yPosition, number)){
             return true;
         }
         else
@@ -62,6 +62,20 @@ public class SudokuGenerator {
                 return true;
             }
         }
+        return false;
+    }
+    private boolean checkRegionConflict( final int[][] Sudoku , final int xPos , final int yPos , final int number ){
+        int xRegion = xPos / 3;
+        int yRegion = yPos / 3;
+
+        for( int x = xRegion * 3 ; x < xRegion * 3 + 3 ; x++ ){
+            for( int y = yRegion * 3 ; y < yRegion * 3 + 3 ; y++ ){
+                if( ( x != xPos || y != yPos ) && number == Sudoku[x][y] ){
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
