@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+
+        </intent-filter>
+            </activity>
+
+
         <activity android:name=".highscore"></activity>
         <activity android:name=".MyRecyclerViewAdapter"></activity>
-
         <activity
             android:name=".ChangeProfile"
             android:theme="@style/AppTheme.NoActionBar" />
