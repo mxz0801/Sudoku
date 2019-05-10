@@ -191,32 +191,27 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
     public void saveScore(final int score){
         DatabaseReference myRef = userReference.child("users").child(currentUser.getUid()).child("highscore");
-        if(myRef.getKey()!=null){
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
-                        if (score < highscore){
-                            userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
-                            userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
-                            userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
-                        }
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
+                    if (score < highscore){
+                        userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
+                        userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
+                        userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
                     }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    
                 }
-
-            });
+                else{
+                    userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
+                }
             }
-        else
-        {
-            userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
-            userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
-            userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
