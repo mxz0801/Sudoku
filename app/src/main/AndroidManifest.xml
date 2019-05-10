@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyRecyclerViewAdapter"></activity>
+        <activity android:name=".MyRecyclerViewAdapter">
+        </activity>
         <activity
             android:name=".ChangeProfile"
             android:theme="@style/AppTheme.NoActionBar" />
