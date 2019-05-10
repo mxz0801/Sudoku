@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,8 +21,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -175,14 +179,31 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public void checkWin(){
         if (data.equals(solutionArray)){
             Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
-            saveScore();
+
             String time = timer.getContentDescription().toString().split(" ")[0];
             int score = Integer.parseInt(time);
+            saveScore(score);
             newGame();
         }
     }
-    public void saveScore(){
-        userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(1);
+    public void saveScore(final int score){
+        DatabaseReference myRef = userReference.child("users").child(currentUser.getUid()).child("highscore");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
+                System.out.println(highscore);
+                if (score < highscore){
+                    userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
