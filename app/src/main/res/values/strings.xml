@@ -17,5 +17,5 @@
     <string name="help3">"In this case, we can quickly notice that there are already number 1s in the top left and center left squares of the grid (with number 1s circled in red). This means that there is only one space remaining in the far left column where a 1 could possibly go \u2013 circled in green. This is how the process of elimination works in Sudoku \u2013 you find out which spaces are available, which numbers are missing \u2013 and then deduce, based on the position of those numbers within the grid, which numbers fit into each space.\n\nSudoku rules are relatively uncomplicated \u2013 but the game is infinitely varied, with millions of possible number combinations and a wide range of levels of difficulty. But it\u2019s all based on the simple principles of using numbers 1-9, filling in the blank spaces based on deductive reasoning, and never repeating any numbers within each square, row or column."</string>
     <string name="txtCredits">https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/</string>
     <string name="aboutTitle"><b>About</b></string>
-    <string name="aboutContent">Fill this later</string>
+    <string name="aboutContent">Sudoku Developer: \nMatthew Nguyen \nMartin Mao \nXinbei Shen \nMichael Ly</string>
 </resources>

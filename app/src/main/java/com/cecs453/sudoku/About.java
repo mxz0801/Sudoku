@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class About extends Activity {
 
+    private TextView about;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +25,7 @@ public class About extends Activity {
         params.x = 0;
         params.y = -20;
         getWindow().setAttributes(params);
+
+        about = findViewById(R.id.textViewHelp1);
     }
 }
