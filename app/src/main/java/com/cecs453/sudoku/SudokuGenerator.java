@@ -9,7 +9,7 @@ public class SudokuGenerator {
     public static SudokuGenerator instance;
     private ArrayList<ArrayList<Integer>> Available = new ArrayList<ArrayList<Integer>>();
     private Random rand = new Random();
-    int removeItems = 3;
+    int removeItems = 1;
 
     public int[][] generateGrid(){
         int[][] sudoku = new int[9][9];
