@@ -19,7 +19,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyRecyclerViewAdapter.ItemClickListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private ImageView sudokuLogo;
@@ -27,7 +30,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private RecyclerView recyclerView;
     private MyRecyclerViewAdapter mAdapter;
     public int[][] sudokuBoard = new int[9][9];
-    public String data[];
+    public ArrayList<String> data;
 
     @Override
     protected void onStart() {
@@ -54,8 +57,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         headerEmail.setText(currentUser.getEmail());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
+        data = new ArrayList<>();
         newGame();
-        String[] data = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48"};
 
         mAdapter = new MyRecyclerViewAdapter(this,data);
         recyclerView.setAdapter(mAdapter);
@@ -105,10 +108,15 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         for (int i = 0; i < sudokuBoard.length; i++) {
             for (int j = 0; j < sudokuBoard[i].length; j++) {
                 System.out.print(sudokuBoard[i][j] + " ");
-//                data
+                data.add(Integer.toString(sudokuBoard[i][j]));
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        System.out.println(mAdapter.getItem(position));
     }
 }
 
