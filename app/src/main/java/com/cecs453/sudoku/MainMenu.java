@@ -192,11 +192,21 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
-                System.out.println(highscore);
-                if (score < highscore){
+                if (dataSnapshot.toString()!=null){
+                    int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
+                    System.out.println(highscore);
+                    if (score < highscore){
+                        userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
+                        userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
+                        userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
+                    }
+                }
+                else{
+                    userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
+                    userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
                     userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
                 }
+
             }
 
             @Override
