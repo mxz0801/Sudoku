@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -25,7 +26,10 @@ public class highscore extends AppCompatActivity {
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         mAdapter = new highscoreAdapter(ITEMS);
+        View highscoreView = parent.findViewById(R.id.highScoreRecycler);
+        RecyclerView recyclerView = (RecyclerView) highscoreView;
 
+        recyclerView.setAdapter(mAdapter);
         return super.onCreateView(parent, name, context, attrs);
     }
 
