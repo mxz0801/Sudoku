@@ -1,6 +1,7 @@
 package com.cecs453.sudoku;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,19 +37,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mData.get(position).equals("0")){
-            holder.myTextView.setText(" ");
+            holder.myTextView.setText("?");
         }
         else{
             holder.myTextView.setText(mData.get(position));
         }
+
     }
+
 
     // total number of cells
     @Override
     public int getItemCount() {
         return mData.size();
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

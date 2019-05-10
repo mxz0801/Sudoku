@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyRecyclerViewAdapter.ItemClickListener {
+public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private ImageView sudokuLogo;
@@ -31,7 +32,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private MyRecyclerViewAdapter mAdapter;
     public int[][] sudokuBoard = new int[9][9];
     public ArrayList<String> data;
-
+    public ArrayList<String> dataOriginal;
+    private LinearLayout b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
+    private ImageView undo;
+    public int holdValue = 0;
     @Override
     protected void onStart() {
         super.onStart();
@@ -47,6 +51,28 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         sudokuLogo = findViewById(R.id.logo);
         sudokuLogo.setImageResource(R.drawable.sudoku_horizontal);
         timer = findViewById(R.id.timer);
+        b1 = findViewById(R.id.b1);
+        b2 = findViewById(R.id.b2);
+        b3 = findViewById(R.id.b3);
+        b4 = findViewById(R.id.b4);
+        b5 = findViewById(R.id.b5);
+        b6 = findViewById(R.id.b6);
+        b7 = findViewById(R.id.b7);
+        b8 = findViewById(R.id.b8);
+        b9 = findViewById(R.id.b9);
+        b0 = findViewById(R.id.b0);
+        undo = findViewById(R.id.imageViewUndo);
+        b1.setOnClickListener(this);
+        b2.setOnClickListener(this);
+        b3.setOnClickListener(this);
+        b4.setOnClickListener(this);
+        b5.setOnClickListener(this);
+        b6.setOnClickListener(this);
+        b7.setOnClickListener(this);
+        b8.setOnClickListener(this);
+        b9.setOnClickListener(this);
+        b0.setOnClickListener(this);
+        undo.setOnClickListener(this);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
@@ -57,9 +83,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         headerEmail.setText(currentUser.getEmail());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
-        data = new ArrayList<>();
+        dataOriginal = new ArrayList<>();
         newGame();
-
+        data = new ArrayList<>();
+        data = dataOriginal;
         mAdapter = new MyRecyclerViewAdapter(this,data);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
@@ -109,7 +136,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         for (int i = 0; i < sudokuBoard.length; i++) {
             for (int j = 0; j < sudokuBoard[i].length; j++) {
                 System.out.print(sudokuBoard[i][j] + " ");
-                data.add(Integer.toString(sudokuBoard[i][j]));
+                dataOriginal.add(Integer.toString(sudokuBoard[i][j]));
             }
             System.out.println();
         }
@@ -117,7 +144,48 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onItemClick(View view, int position) {
-        System.out.println(mAdapter.getItem(position));
+        if(dataOriginal.get(position).equals("0")){
+            data.set(position,Integer.toString(holdValue));
+            mAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.b1:
+                holdValue = 1;
+                break;
+            case R.id.b2:
+                holdValue = 2;
+                break;
+            case R.id.b3:
+                holdValue = 3;
+                break;
+            case R.id.b4:
+                holdValue = 4;
+                break;
+            case R.id.b5:
+                holdValue = 5;
+                break;
+            case R.id.b6:
+                holdValue = 6;
+                break;
+            case R.id.b7:
+                holdValue = 7;
+                break;
+            case R.id.b8:
+                holdValue = 8;
+                break;
+            case R.id.b9:
+                holdValue = 9;
+                break;
+            case R.id.b0:
+                holdValue = 0;
+                break;
+
+        }
     }
 }
 
