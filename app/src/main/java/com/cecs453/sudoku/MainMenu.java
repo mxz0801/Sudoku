@@ -176,6 +176,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         if (data.equals(solutionArray)){
             Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
             saveScore();
+            String time = timer.getContentDescription().toString().split(" ")[0];
+            int score = Integer.parseInt(time);
             newGame();
         }
     }
