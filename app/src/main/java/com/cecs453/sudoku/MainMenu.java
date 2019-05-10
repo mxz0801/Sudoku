@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private int lastPostition = -1;
     private int lastValue;
     private int holdValue = 0;
+    private DatabaseReference userReference;
     @Override
     protected void onStart() {
         super.onStart();
@@ -54,6 +57,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_main_menu);
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
+        userReference = FirebaseDatabase.getInstance().getReference();
+
         sudokuLogo = findViewById(R.id.logo);
         sudokuLogo.setImageResource(R.drawable.sudoku_horizontal);
         timer = findViewById(R.id.timer);
@@ -170,8 +175,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public void checkWin(){
         if (data.equals(solutionArray)){
             Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
+            saveScore();
             newGame();
         }
+    }
+    public void saveScore(){
+        userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(1);
     }
 
     @Override
