@@ -133,6 +133,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
     public void newGame(){
+        dataOriginal.clear();
+        data.clear();
+        solutionArray.clear();
+
         //timer.setBase((SystemClock.elapsedRealtime()));
         SudokuGenerator sudokuGenerator = new SudokuGenerator();
         solution = sudokuGenerator.generateGrid();
@@ -152,7 +156,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
     public void checkWin(){
         if (data.equals(solutionArray)){
-            System.out.println("Winner");
+            Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
+            newGame();
         }
     }
 
