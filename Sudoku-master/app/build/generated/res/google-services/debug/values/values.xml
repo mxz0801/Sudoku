@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">13194984794-miv41r36kq3vdtc45b7jf86r0mk5thdn.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://sudoku-34a68.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">13194984794</string>
+    <string name="google_api_key" translatable="false">AIzaSyCgqlpfeh2KV5fvCJwT_ZbcDP1_RamS7oQ</string>
+    <string name="google_app_id" translatable="false">1:13194984794:android:602d8c783697822f</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCgqlpfeh2KV5fvCJwT_ZbcDP1_RamS7oQ</string>
+    <string name="google_storage_bucket" translatable="false">sudoku-34a68.appspot.com</string>
+    <string name="project_id" translatable="false">sudoku-34a68</string>
+</resources>
