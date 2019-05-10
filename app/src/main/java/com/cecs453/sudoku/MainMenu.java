@@ -61,6 +61,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         newGame();
 
         mAdapter = new MyRecyclerViewAdapter(this,data);
+        mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
 }
 
