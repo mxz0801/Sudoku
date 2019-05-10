@@ -7,6 +7,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Chronometer;
@@ -22,6 +24,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private FirebaseUser currentUser;
     private ImageView sudokuLogo;
     private Chronometer timer;
+    private RecyclerView recyclerView;
+    private MyRecyclerViewAdapter mAdapter;
+    public int[][] sudokuBoard = new int[9][9];
+    public String data[];
 
     @Override
     protected void onStart() {
@@ -46,8 +52,14 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         TextView headerEmail = headerView.findViewById(R.id.headerEmail);
         headerDisplayName.setText(currentUser.getDisplayName());
         headerEmail.setText(currentUser.getEmail());
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
         newGame();
-    }
+        String[] data = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48"};
+
+        mAdapter = new MyRecyclerViewAdapter(this,data);
+        recyclerView.setAdapter(mAdapter);
+}
 
     @Override
     public void onBackPressed() {
@@ -89,10 +101,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         //timer.setBase((SystemClock.elapsedRealtime()));
         SudokuGenerator sudokuGenerator = new SudokuGenerator();
         int[][] solution = sudokuGenerator.generateGrid();
-        int[][] sudoku = sudokuGenerator.removeElements(solution);
-        for (int i = 0; i < sudoku.length; i++) {
-            for (int j = 0; j < sudoku[i].length; j++) {
-                System.out.print(sudoku[i][j] + " ");
+        sudokuBoard = sudokuGenerator.removeElements(solution);
+        for (int i = 0; i < sudokuBoard.length; i++) {
+            for (int j = 0; j < sudokuBoard[i].length; j++) {
+                System.out.print(sudokuBoard[i][j] + " ");
+//                data
             }
             System.out.println();
         }
