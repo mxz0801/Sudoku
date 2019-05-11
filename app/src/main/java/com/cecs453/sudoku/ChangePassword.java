@@ -52,7 +52,7 @@ public class ChangePassword extends Activity implements View.OnClickListener{
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * .85), (int) (height * .55));
+        getWindow().setLayout((int) (width * .85), (int) (height * .6));
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;

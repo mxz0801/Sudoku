@@ -38,6 +38,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    private DatabaseReference userReference;
+
+
     private static final String TAG = "MainActivity";
 
 
@@ -55,6 +58,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         textViewSignIn =    findViewById(R.id.textViewSignIn);
         buttonRegister.setOnClickListener(this);
         textViewSignIn.setOnClickListener(this);
+        userReference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void registerUser(){
@@ -62,7 +66,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         final String display_name = editTextDisplayName.getText().toString();
         final String password = editTextPassword.getText().toString();
         String passwordConfirm = editTextPasswordConfirm.getText().toString();
-
         // Check if all the fields are entered
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter email.", Toast.LENGTH_SHORT).show();
@@ -92,7 +95,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(Register.this, "Registration Success", Toast.LENGTH_SHORT).show();
-
                             // If registration successful, add user to the database as well
                             user = firebaseAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -109,6 +111,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                             }
                                         }
                                     });
+
                             loginUser(email,password);
                         }
                         else {
@@ -120,6 +123,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 });
     }
     private void loginUser(String email,String password) {
+        userReference.child("users").child(user.getUid()).child("uid").setValue(user.getUid());
+        userReference.child("users").child(user.getUid()).child("displayname").setValue(user.getDisplayName());
         progressDialog.setMessage("Logging In");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email,password)

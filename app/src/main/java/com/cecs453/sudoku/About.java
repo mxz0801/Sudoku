@@ -19,7 +19,7 @@ public class About extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * .85), (int) (height * .85));
+        getWindow().setLayout((int) (width * .85), (int) (height * .3));
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;

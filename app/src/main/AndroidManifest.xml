@@ -19,8 +19,8 @@
             </activity>
 
 
-        <activity android:name=".highscore"></activity>
-        <activity android:name=".MyRecyclerViewAdapter"></activity>
+        <activity android:name=".highscore"
+            android:theme="@style/AppTheme.PopUp" />
         <activity
             android:name=".ChangeProfile"
             android:theme="@style/AppTheme.NoActionBar" />

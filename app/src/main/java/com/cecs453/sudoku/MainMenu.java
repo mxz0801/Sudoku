@@ -111,11 +111,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         dataOriginal = new ArrayList<>();
         data = new ArrayList<>();
         solutionArray = new ArrayList<>();
-        newGame();
         System.out.println(data);
         System.out.println(solutionArray);
         mAdapter = new MyRecyclerViewAdapter(this,data,dataOriginal);
         mAdapter.setClickListener(this);
+        newGame();
         recyclerView.setAdapter(mAdapter);
 }
 
@@ -178,6 +178,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 data.add(Integer.toString(sudokuBoard[i][j]));
             }
         }
+        mAdapter.notifyDataSetChanged();
     }
     public void checkWin(){
         if (data.equals(solutionArray)){
@@ -197,8 +198,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 if(dataSnapshot.exists()){
                     int highscore = Integer.parseInt(dataSnapshot.getValue().toString());
                     if (score < highscore){
-                        userReference.child("users").child(currentUser.getUid()).child("displayname").setValue(currentUser.getDisplayName());
-                        userReference.child("users").child(currentUser.getUid()).child("uid").setValue(currentUser.getUid());
                         userReference.child("users").child(currentUser.getUid()).child("highscore").setValue(score);
                     }
                 }

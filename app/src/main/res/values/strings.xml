@@ -19,4 +19,6 @@
     <string name="aboutTitle"><b>About</b></string>
     <string name="highscore">High Scores</string>
     <string name="aboutContent">Sudoku Developer: \nMatthew Nguyen \nMartin Mao \nXinbei Shen \nMichael Ly</string>
+    <string name="leaderboard">LeaderBoard</string>
+    <string name="your_high_score">Your High Score :</string>
 </resources>
