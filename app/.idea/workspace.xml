@@ -7,24 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b39e642f-3717-4fae-ba3b-1826111cb4a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/About.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/ChangePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/ChangePassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/HighScoreViewAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/popupbg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/popupbg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sudoku_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/sudoku_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_about.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_about.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_highscore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_highscore.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/highscore_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/highscore_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,14 +26,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="48" column="70" selection-start-line="48" selection-start-column="70" selection-end-line="48" selection-end-column="70" />
+            <state relative-caret-position="521">
+              <caret line="89" column="103" selection-start-line="89" selection-start-column="103" selection-end-line="89" selection-end-column="103" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -62,12 +56,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_about.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+            <state relative-caret-position="374">
+              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -91,16 +85,6 @@
                 <element signature="e#1086#1111#0" expanded="true" />
                 <element signature="e#1643#1664#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_change_password.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="30" selection-start-line="6" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -161,25 +145,25 @@
         <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/main/res/drawable/background.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/highscore_item.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/MyRecyclerViewAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_highscore.xml" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/ChangePassword.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java" />
         <option value="$PROJECT_DIR$/src/main/res/drawable/popupbg.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/About.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_about.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="796" />
-    <option name="y" value="38" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="643" />
+    <option name="y" value="1" />
+    <option name="width" value="1284" />
+    <option name="height" value="1046" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -339,7 +323,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.11673774" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.11673774" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -361,7 +345,7 @@
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info active="true" anchor="right" id="Preview" order="5" visible="true" weight="0.42857143" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.42857143" />
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -477,17 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="43" column="44" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-          <folding>
-            <element signature="e#995#1188#0" expanded="true" />
-            <element signature="e#1187#1188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/MyRecyclerViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -555,16 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="48" column="70" selection-start-line="48" selection-start-column="70" selection-end-line="48" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/popupbg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -582,8 +545,25 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_about.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        <state relative-caret-position="374">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscoreAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cecs453/sudoku/highscore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="89" column="103" selection-start-line="89" selection-start-column="103" selection-end-line="89" selection-end-column="103" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

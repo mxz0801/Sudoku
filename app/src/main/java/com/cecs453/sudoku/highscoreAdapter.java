@@ -40,8 +40,8 @@ public class highscoreAdapter extends RecyclerView.Adapter<highscoreAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mrank.setText("# "+position+1);
+    public void onBindViewHolder(final ViewHolder holder, int position) { ;
+        holder.mrank.setText("# "+ position+1);
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).getDisplayname());
         holder.score.setBase(SystemClock.elapsedRealtime() - (mValues.get(position).getHighscore() * 1000));

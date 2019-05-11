@@ -82,11 +82,12 @@ public class highscore extends AppCompatActivity {
                 Iterable<DataSnapshot> userIDS = dataSnapshot.getChildren();
                 for(DataSnapshot user:userIDS) {
                     userProfile p = user.getValue(userProfile.class);
-                    ITEMS.add(p);
+                    if(p.getHighscore()!=0){
+                        ITEMS.add(p);
+                    }
                     if(p.getUid().equals(currentUser.getUid())){
                         if(Integer.toString(p.getHighscore())!=null){
                             yourScore.setBase(SystemClock.elapsedRealtime() - p.getHighscore() * 1000);
-
                         }
                     }
                 }
