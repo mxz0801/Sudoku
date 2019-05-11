@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -40,11 +41,13 @@ public class highscoreAdapter extends RecyclerView.Adapter<highscoreAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) { ;
-        holder.mrank.setText("# "+ position+1);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        int tRank = position+1;
+        holder.mrank.setText("# "+ tRank);
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).getDisplayname());
         holder.score.setBase(SystemClock.elapsedRealtime() - (mValues.get(position).getHighscore() * 1000));
+        Picasso.get().load(mValues.get(position).getPhoto()).into(holder.mImageView);
     }
 
     @Override

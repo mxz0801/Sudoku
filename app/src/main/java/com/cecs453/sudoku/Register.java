@@ -39,10 +39,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private DatabaseReference userReference;
-
+    private String uid;
 
     private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,24 +93,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(Register.this, "Registration Success", Toast.LENGTH_SHORT).show();
-                            // If registration successful, add user to the database as well
                             user = firebaseAuth.getCurrentUser();
+                            uid = user.getUid();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(display_name)
-                                    .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                                    .setPhotoUri (Uri.parse("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"))
                                     .build();
-
-                            user.updateProfile(profileUpdates)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "User profile updated.");
-                                            }
-                                        }
-                                    });
-
+                            user.updateProfile(profileUpdates);
+                            userReference.child("users").child(uid).child("displayname").setValue(display_name);
+                            userReference.child("users").child(uid).child("uid").setValue(uid);
+                            userReference.child("users").child(uid).child("profile_photo").setValue("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
                             loginUser(email,password);
                         }
                         else {
@@ -123,8 +114,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 });
     }
     private void loginUser(String email,String password) {
-        userReference.child("users").child(user.getUid()).child("uid").setValue(user.getUid());
-        userReference.child("users").child(user.getUid()).child("displayname").setValue(user.getDisplayName());
         progressDialog.setMessage("Logging In");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email,password)

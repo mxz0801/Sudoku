@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -62,7 +63,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         userReference = FirebaseDatabase.getInstance().getReference();
-
         sudokuLogo = findViewById(R.id.logo);
         sudokuLogo.setImageResource(R.drawable.sudoku_horizontal);
         timer = findViewById(R.id.timer);
@@ -106,6 +106,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         TextView headerEmail = headerView.findViewById(R.id.headerEmail);
         headerDisplayName.setText(currentUser.getDisplayName());
         headerEmail.setText(currentUser.getEmail());
+        Picasso.get().load(currentUser.getPhotoUrl()).into(headerImageView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
         dataOriginal = new ArrayList<>();
