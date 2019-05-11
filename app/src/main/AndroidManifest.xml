@@ -23,7 +23,7 @@
             android:theme="@style/AppTheme.PopUp" />
         <activity
             android:name=".ChangeProfile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.PopUp" />
         <activity
             android:name=".About"
             android:theme="@style/AppTheme.PopUp" />

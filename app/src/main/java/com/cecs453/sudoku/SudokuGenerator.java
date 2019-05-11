@@ -16,7 +16,7 @@ public class SudokuGenerator {
         int currentPosition = 0;
         clearGrid(sudoku);
         while(currentPosition < 81){
-            if( Available.get(currentPosition).size() != 0 ){
+            if( Available.get(currentPosition).size() != 0){
                 int i = rand.nextInt(Available.get(currentPosition).size());
                 int number = Available.get(currentPosition).get(i);
                 if( !checkConflict(sudoku, currentPosition , number)){

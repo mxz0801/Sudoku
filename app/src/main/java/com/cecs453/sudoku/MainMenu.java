@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener {
@@ -43,13 +42,15 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private ArrayList<String> solutionArray;
     private ArrayList<String> data;
     private ArrayList<String> dataOriginal;
-    private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t0;
+    private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t0,headerDisplayName,headerEmail;
     private LinearLayout b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
-    private ImageView undo;
-    private int lastPostition = -1;
+    private ImageView undo,refresh,headerImageView;
+    private int lastPosition = -1;
     private int lastValue;
     private int holdValue = 0;
     private DatabaseReference userReference;
+    private NavigationView navigationView;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -65,6 +66,29 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         userReference = FirebaseDatabase.getInstance().getReference();
         sudokuLogo = findViewById(R.id.logo);
         sudokuLogo.setImageResource(R.drawable.sudoku_horizontal);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        setButtons();
+        View headerView = navigationView.getHeaderView(0);
+        headerImageView = headerView.findViewById(R.id.headerimageView);
+        Picasso.get().load(currentUser.getPhotoUrl()).into(headerImageView);
+        headerDisplayName = headerView.findViewById(R.id.headerDisplayName);
+        headerEmail = headerView.findViewById(R.id.headerEmail);
+        refresh = headerView.findViewById(R.id.refresh);
+        refresh.setOnClickListener(this);
+        setNav();
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
+        dataOriginal = new ArrayList<>();
+        data = new ArrayList<>();
+        solutionArray = new ArrayList<>();
+        mAdapter = new MyRecyclerViewAdapter(this,data,dataOriginal);
+        mAdapter.setClickListener(this);
+        newGame();
+        recyclerView.setAdapter(mAdapter);
+}
+
+    public void setButtons(){
         timer = findViewById(R.id.timer);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
@@ -98,27 +122,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         b9.setOnClickListener(this);
         b0.setOnClickListener(this);
         undo.setOnClickListener(this);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View headerView = navigationView.getHeaderView(0);
-        ImageView headerImageView = headerView.findViewById(R.id.headerimageView);
-        TextView headerDisplayName = headerView.findViewById(R.id.headerDisplayName);
-        TextView headerEmail = headerView.findViewById(R.id.headerEmail);
+    }
+    public void setNav(){
+        Picasso.get().load(currentUser.getPhotoUrl()).into(headerImageView);
         headerDisplayName.setText(currentUser.getDisplayName());
         headerEmail.setText(currentUser.getEmail());
-        Picasso.get().load(currentUser.getPhotoUrl()).into(headerImageView);
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 9));
-        dataOriginal = new ArrayList<>();
-        data = new ArrayList<>();
-        solutionArray = new ArrayList<>();
-        System.out.println(data);
-        System.out.println(solutionArray);
-        mAdapter = new MyRecyclerViewAdapter(this,data,dataOriginal);
-        mAdapter.setClickListener(this);
-        newGame();
-        recyclerView.setAdapter(mAdapter);
-}
+    }
 
     @Override
     public void onBackPressed() {
@@ -159,6 +168,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public void newGame(){
         dataOriginal.clear();
         data.clear();
@@ -181,6 +191,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         }
         mAdapter.notifyDataSetChanged();
     }
+
     public void checkWin(){
         if (data.equals(solutionArray)){
             Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
@@ -191,6 +202,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             newGame();
         }
     }
+
     public void saveScore(final int score){
         DatabaseReference myRef = userReference.child("users").child(currentUser.getUid()).child("highscore");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -214,10 +226,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         });
     }
 
-
     @Override
     public void onItemClick(View view, int position) {
-        lastPostition = position;
+        lastPosition = position;
         lastValue = Integer.parseInt(data.get(position));
         if(dataOriginal.get(position).equals("0")){
             data.set(position,Integer.toString(holdValue));
@@ -238,7 +249,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         t8.setTextColor(Color.BLACK);
         t9.setTextColor(Color.BLACK);
         t0.setTextColor(Color.BLACK);
-
 
         switch (v.getId()){
             case R.id.b1:
@@ -282,12 +292,14 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 t0.setTextColor(Color.RED);
                 break;
             case R.id.imageViewUndo:
-                if(lastPostition!=-1){
-                    data.set(lastPostition,Integer.toString(lastValue));
+                if(lastPosition !=-1){
+                    data.set(lastPosition,Integer.toString(lastValue));
                     mAdapter.notifyDataSetChanged();
                 }
                 break;
-
+            case R.id.refresh:
+                setNav();
+                break;
         }
     }
 }

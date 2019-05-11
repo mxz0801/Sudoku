@@ -23,6 +23,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/user_photo"
+                    android:scaleType="centerCrop"
                     />
                 <View
                     android:layout_width="1px"

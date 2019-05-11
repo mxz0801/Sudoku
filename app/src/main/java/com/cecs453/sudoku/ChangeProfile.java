@@ -6,8 +6,14 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,11 +37,25 @@ public class ChangeProfile extends AppCompatActivity implements View.OnClickList
     private FirebaseStorage storage;
     private StorageReference storageRef;
     private DatabaseReference mDatabase;
+    private EditText editText;
+    private Button save;
+    private Button cancel;
+    public static final int PICK_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_profile);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout((int) (width * .85), (int) (height * .6));
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.gravity = Gravity.CENTER;
+        params.x = 0;
+        params.y = -20;
+        getWindow().setAttributes(params);
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         storage = FirebaseStorage.getInstance();
@@ -44,14 +64,40 @@ public class ChangeProfile extends AppCompatActivity implements View.OnClickList
         changeImage = findViewById(R.id.changeImage);
         changeImage.setOnClickListener(this);
         Picasso.get().load(currentUser.getPhotoUrl()).into(changeImage);
+        editText = findViewById(R.id.editDisplayName);
+        editText.setText(currentUser.getDisplayName());
+        save = findViewById(R.id.Save);
+        cancel = findViewById(R.id.Cancel);
+        save.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        pickImage();
+        if (v == changeImage){
+            pickImage();
+        }
+        else if (v == save){
+            String displayName = editText.getText().toString();
+            if(!displayName.isEmpty()) {
+                mDatabase.child("users").child(currentUser.getUid()).child("displayname").setValue(displayName);
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .build();
+                currentUser.updateProfile(profileUpdates);
+                finish();
+            }
+            else{
+                Toast.makeText(this, "Display Name cannot be empty.", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else if (v == cancel){
+            finish();
+        }
     }
-    public static final int PICK_IMAGE = 1;
+
 
     public void pickImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
