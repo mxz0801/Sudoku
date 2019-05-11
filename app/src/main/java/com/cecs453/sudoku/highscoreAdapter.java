@@ -27,6 +27,11 @@ public class highscoreAdapter extends RecyclerView.Adapter<highscoreAdapter.View
             @Override
             public int compare(userProfile o1, userProfile o2) {
                 return Integer.toString(o1.getHighscore()).compareTo(Integer.toString(o2.getHighscore()));
+//                if(o1.getHighscore()>o2.getHighscore()){
+//                    return 1;
+//                }
+//                else
+//                    return 0;
             }
         };
         Collections.sort(items,compareByHighScore);
