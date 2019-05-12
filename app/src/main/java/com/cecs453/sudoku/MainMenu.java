@@ -195,9 +195,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public void checkWin(){
         if (data.equals(solutionArray)){
             Toast.makeText(this, "Winner!", Toast.LENGTH_SHORT).show();
-
-            String time = timer.getContentDescription().toString().split(" ")[0];
-            int score = Integer.parseInt(time);
+            long elapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
+            int score = (int)elapsedMillis;
             saveScore(score);
             newGame();
         }

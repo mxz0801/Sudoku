@@ -87,7 +87,7 @@ public class highscore extends AppCompatActivity {
                     }
                     if(p.getUid().equals(currentUser.getUid())){
                         if(Integer.toString(p.getHighscore())!=null){
-                            yourScore.setBase(SystemClock.elapsedRealtime() - p.getHighscore() * 1000);
+                            yourScore.setBase(SystemClock.elapsedRealtime() - p.getHighscore());
                         }
                     }
                 }

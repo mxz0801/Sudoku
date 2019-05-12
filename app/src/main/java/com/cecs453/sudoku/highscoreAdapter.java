@@ -46,7 +46,7 @@ public class highscoreAdapter extends RecyclerView.Adapter<highscoreAdapter.View
         holder.mrank.setText("# "+ tRank);
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).getDisplayname());
-        holder.score.setBase(SystemClock.elapsedRealtime() - (mValues.get(position).getHighscore() * 1000));
+        holder.score.setBase(SystemClock.elapsedRealtime() - (mValues.get(position).getHighscore()));
         Picasso.get().load(mValues.get(position).getPhoto()).into(holder.mImageView);
     }
 

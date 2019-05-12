@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editDisplayName"
         android:hint="Display Name"
+        android:inputType="textPersonName"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         />
